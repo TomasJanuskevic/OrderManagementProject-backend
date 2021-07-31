@@ -1,5 +1,6 @@
 package com.OrderManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Flower {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
     private BouquetFlower bouquetFlower;
 

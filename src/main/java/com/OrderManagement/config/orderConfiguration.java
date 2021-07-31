@@ -31,7 +31,8 @@ public class orderConfiguration {
                     "www.facebook.com/ramune", "Savanoriu.g 5", user1);
             customerRepository.save(customer1);
 
-            Order order1 = new Order(5.0, "Aprasymas", true, LocalDate.of(2021, 8, 2), customer1);
+            Order order1 = new Order(5.0, "Aprasymas", true,
+                    LocalDate.of(2021, 8, 2), customer1);
             orderRepository.save(order1);
 
             Bouquet bouquet1 = new Bouquet(20.0, 1, order1);

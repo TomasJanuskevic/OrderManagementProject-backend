@@ -1,7 +1,6 @@
 package com.OrderManagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +24,9 @@ public class Order {
     private String description;
     private boolean requiredDelivery;
     private LocalDate orderDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus = OrderStatus.GAMINAMAS;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
