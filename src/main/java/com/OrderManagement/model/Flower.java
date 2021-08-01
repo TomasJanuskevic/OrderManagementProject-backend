@@ -1,6 +1,8 @@
 package com.OrderManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +23,12 @@ public class Flower {
     private double price;
     private String color;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
     private BouquetFlower bouquetFlower;
 

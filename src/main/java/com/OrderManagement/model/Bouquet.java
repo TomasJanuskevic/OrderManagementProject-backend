@@ -1,6 +1,8 @@
 package com.OrderManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,16 +23,17 @@ public class Bouquet {
     private double bouquetPrice;
     private int quantity;
 
-
+    @JsonManagedReference
     @OneToOne(mappedBy = "bouquet", cascade = CascadeType.ALL)
     private Accessories accessories;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @JsonIgnore
-    @OneToMany (mappedBy = "bouquet", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "bouquet", cascade = CascadeType.ALL)
     private Set<BouquetFlower> bouquetFlower = new HashSet<>();
 
     public Bouquet(double bouquetPrice, int quantity, Order order) {
