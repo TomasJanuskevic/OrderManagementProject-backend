@@ -21,7 +21,7 @@ public class orderConfiguration {
                                         UserRepository userRepository) {
 
         return args -> {
-            User user1 = new User("Tom", "pass");
+            User user1 = new User("Tom", "password");
             userRepository.save(user1);
 
             Flower flower1 = new Flower("Roze", 2.20, "Red", user1);

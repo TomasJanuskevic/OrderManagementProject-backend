@@ -1,6 +1,7 @@
 package com.OrderManagement.controller;
 
 import com.OrderManagement.exception.UserNotFoundException;
+import com.OrderManagement.model.AuthRequest;
 import com.OrderManagement.model.User;
 import com.OrderManagement.service.UserService;
 import lombok.AllArgsConstructor;
@@ -48,4 +49,5 @@ public class UserController {
         userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
