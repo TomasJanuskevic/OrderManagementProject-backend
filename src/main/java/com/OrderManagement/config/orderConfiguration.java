@@ -29,6 +29,7 @@ public class orderConfiguration {
 
             Customer customer1 = new Customer("Ramune", "Petrauskene", "ramune@gmail.com", "+37067365862",
                     "www.facebook.com/ramune", "Savanoriu.g 5", user1);
+
             customerRepository.save(customer1);
 
             Order order1 = new Order(5.0, "Aprasymas", true,

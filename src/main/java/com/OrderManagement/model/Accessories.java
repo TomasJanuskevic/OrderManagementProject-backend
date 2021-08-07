@@ -19,7 +19,7 @@ public class Accessories {
     private String description;
     private double price;
 
-    @JsonBackReference
+    @JsonBackReference (value = "accessories")
     @OneToOne
     @JoinColumn(name = "bouquet_id", nullable = false)
     private Bouquet bouquet;

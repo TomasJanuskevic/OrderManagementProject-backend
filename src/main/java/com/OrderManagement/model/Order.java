@@ -1,7 +1,6 @@
 package com.OrderManagement.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -30,14 +29,14 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = OrderStatus.GAMINAMAS;
 
-    @JsonBackReference
+    @JsonBackReference (value = "orders")
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "bouquet")
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<Bouquet> bouquets = new HashSet<>();
+    private Set<Bouquet> bouquets = new LinkedHashSet<>();
 
     public Order(double deliveryPrice, String description, boolean requiredDelivery, LocalDate orderDate, Customer customer) {
         this.deliveryPrice = deliveryPrice;

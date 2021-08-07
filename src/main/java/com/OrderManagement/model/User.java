@@ -1,6 +1,5 @@
 package com.OrderManagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,12 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class User {
@@ -23,13 +25,13 @@ public class User {
     private String userName;
     private String password;
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "customers")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Customer> customers = new HashSet<>();
+    private List<Customer> customers = new ArrayList<>();
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "flowers")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Flower> flowers = new HashSet<>();
+    private Set<Flower> flowers = new LinkedHashSet<>();
 
     public User(String userName, String password) {
         this.userName = userName;

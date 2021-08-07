@@ -1,14 +1,13 @@
 package com.OrderManagement.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -23,18 +22,18 @@ public class Bouquet {
     private double bouquetPrice;
     private int quantity;
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "accessories")
     @OneToOne(mappedBy = "bouquet", cascade = CascadeType.ALL)
     private Accessories accessories;
 
-    @JsonBackReference
+    @JsonBackReference (value = "bouquet")
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "bouquetFlower")
     @OneToMany(mappedBy = "bouquet", cascade = CascadeType.ALL)
-    private Set<BouquetFlower> bouquetFlower = new HashSet<>();
+    private Set<BouquetFlower> bouquetFlower = new LinkedHashSet<>();
 
     public Bouquet(double bouquetPrice, int quantity, Order order) {
         this.bouquetPrice = bouquetPrice;

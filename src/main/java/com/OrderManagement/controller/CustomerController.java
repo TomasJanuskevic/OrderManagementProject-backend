@@ -1,13 +1,11 @@
 package com.OrderManagement.controller;
 
 import com.OrderManagement.exception.CustomerNotFoundException;
-import com.OrderManagement.exception.UserNotFoundException;
 import com.OrderManagement.model.Customer;
-import com.OrderManagement.model.User;
 import com.OrderManagement.service.CustomerService;
-import com.OrderManagement.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +29,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/customer")
+    @PostMapping(value="/customer", consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);

@@ -23,13 +23,13 @@ public class Flower {
     private double price;
     private String color;
 
-    @JsonBackReference
+    @JsonBackReference(value = "flowers")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "bouquetFlowers")
+    @OneToOne(mappedBy = "flower")
     private BouquetFlower bouquetFlower;
 
     public Flower(String flowerName, double price, String color, User user) {

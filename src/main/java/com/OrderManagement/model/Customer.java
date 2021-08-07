@@ -1,19 +1,20 @@
 package com.OrderManagement.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class Customer {
@@ -27,14 +28,14 @@ public class Customer {
     private String facebookAcc;
     private String address;
 
-    @JsonBackReference
+    @JsonBackReference (value = "customers")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonManagedReference
+    @JsonManagedReference (value = "orders")
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Set<Order> orders = new HashSet<>();
+    private Set<Order> orders = new LinkedHashSet<>();
 
     public Customer(String name, String lastname, String email, String phoneNumber,
                     String facebookAcc, String address, User user) {
