@@ -8,8 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,7 +36,7 @@ public class Order {
 
     @JsonManagedReference (value = "bouquet")
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<Bouquet> bouquets = new LinkedHashSet<>();
+    private List<Bouquet> bouquets = new ArrayList<>();
 
     public Order(double deliveryPrice, String description, boolean requiredDelivery, LocalDate orderDate, Customer customer) {
         this.deliveryPrice = deliveryPrice;

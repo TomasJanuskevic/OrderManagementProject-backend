@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,7 +33,7 @@ public class Bouquet {
 
     @JsonManagedReference (value = "bouquetFlower")
     @OneToMany(mappedBy = "bouquet", cascade = CascadeType.ALL)
-    private Set<BouquetFlower> bouquetFlower = new LinkedHashSet<>();
+    private List<BouquetFlower> bouquetFlower = new ArrayList<>();
 
     public Bouquet(double bouquetPrice, int quantity, Order order) {
         this.bouquetPrice = bouquetPrice;

@@ -42,7 +42,7 @@ public class orderConfiguration {
             Accessories accessories1 = new Accessories("Aprasymas", 6.5, bouquet1);
             accessoriesRepository.save(accessories1);
 
-            BouquetFlower bouquetFlower1 = new BouquetFlower(5,bouquet1,flower1);
+            BouquetFlower bouquetFlower1 = new BouquetFlower(5, bouquet1, flower1);
             bouquetFlowerRepository.save(bouquetFlower1);
 
         };
