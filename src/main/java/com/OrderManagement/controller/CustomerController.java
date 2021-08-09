@@ -29,7 +29,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value="/customer", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/customer")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
