@@ -19,7 +19,7 @@ public class BouquetFlower {
     private Long bouquetFlowerId;
     private int quantity;
 
-    @JsonBackReference (value = "bouquetFlower")
+    @JsonBackReference(value = "bouquetFlower")
     @ManyToOne
     @JoinColumn(name = "bouquet_id", nullable = false)
     private Bouquet bouquet;
@@ -33,5 +33,9 @@ public class BouquetFlower {
         this.quantity = quantity;
         this.bouquet = bouquet;
         this.flower = flower;
+    }
+
+    public double bouquetFlowerPrimeCost() {
+        return flower.getPrice() * quantity;
     }
 }

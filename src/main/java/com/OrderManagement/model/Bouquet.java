@@ -19,12 +19,11 @@ public class Bouquet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bouquetId;
+    private String description;
     private double bouquetPrice;
     private int quantity;
-
-    @JsonManagedReference (value = "accessories")
-    @OneToOne(mappedBy = "bouquet", cascade = CascadeType.ALL)
-    private Accessories accessories;
+    private double primeCost;
+    private double accessoriesPrice;
 
     @JsonBackReference (value = "bouquet")
     @ManyToOne
@@ -33,11 +32,17 @@ public class Bouquet {
 
     @JsonManagedReference (value = "bouquetFlower")
     @OneToMany(mappedBy = "bouquet", cascade = CascadeType.ALL)
-    private List<BouquetFlower> bouquetFlower = new ArrayList<>();
+    private List<BouquetFlower> bouquetFlowers = new ArrayList<>();
 
-    public Bouquet(double bouquetPrice, int quantity, Order order) {
+    public Bouquet(String description, double bouquetPrice, int quantity, double accessoriesPrice, Order order) {
+        this.description = description;
         this.bouquetPrice = bouquetPrice;
         this.quantity = quantity;
+        this.accessoriesPrice = accessoriesPrice;
         this.order = order;
+    }
+
+    public double bouquetPrimeCost(){
+        return bouquetFlowers.stream().mapToDouble(BouquetFlower::bouquetFlowerPrimeCost).sum();
     }
 }

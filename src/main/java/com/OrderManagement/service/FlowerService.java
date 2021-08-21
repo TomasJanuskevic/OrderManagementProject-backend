@@ -46,6 +46,5 @@ public class FlowerService {
         } else {
             throw new FlowerNotFoundException("Flower by id: " + id + " was not found");
         }
-
     }
 }

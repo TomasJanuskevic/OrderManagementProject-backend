@@ -12,8 +12,7 @@ import java.time.LocalDate;
 public class orderConfiguration {
 
     @Bean
-    CommandLineRunner commandLineRunner(AccessoriesRepository accessoriesRepository,
-                                        BouquetRepository bouquetRepository,
+    CommandLineRunner commandLineRunner(BouquetRepository bouquetRepository,
                                         BouquetFlowerRepository bouquetFlowerRepository,
                                         CustomerRepository customerRepository,
                                         FlowerRepository flowerRepository,
@@ -36,11 +35,8 @@ public class orderConfiguration {
                     LocalDate.of(2021, 8, 2), customer1);
             orderRepository.save(order1);
 
-            Bouquet bouquet1 = new Bouquet(20.0, 1, order1);
+            Bouquet bouquet1 = new Bouquet("Zalias", 20.0, 1, 3.0, order1);
             bouquetRepository.save(bouquet1);
-
-            Accessories accessories1 = new Accessories("Aprasymas", 6.5, bouquet1);
-            accessoriesRepository.save(accessories1);
 
             BouquetFlower bouquetFlower1 = new BouquetFlower(5, bouquet1, flower1);
             bouquetFlowerRepository.save(bouquetFlower1);
