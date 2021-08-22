@@ -16,4 +16,9 @@ public class BouquetFlowerService {
         bouquetFlowerRepository.save(bouquetFlower);
         log.info("BouquetFlower was added successfully");
     }
+
+    public void deleteBouquetFlowerById(Long id) {
+        bouquetFlowerRepository.deleteById(id);
+        log.info("BouquetFlower was deleted successfully");
+    }
 }

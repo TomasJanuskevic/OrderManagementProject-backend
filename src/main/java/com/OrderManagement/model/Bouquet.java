@@ -22,15 +22,16 @@ public class Bouquet {
     private String description;
     private double bouquetPrice;
     private int quantity;
-    private double primeCost;
     private double accessoriesPrice;
+    @Transient
+    private double primeCost;
 
-    @JsonBackReference (value = "bouquet")
+    @JsonBackReference(value = "bouquet")
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @JsonManagedReference (value = "bouquetFlower")
+    @JsonManagedReference(value = "bouquetFlower")
     @OneToMany(mappedBy = "bouquet", cascade = CascadeType.ALL)
     private List<BouquetFlower> bouquetFlowers = new ArrayList<>();
 
@@ -42,7 +43,8 @@ public class Bouquet {
         this.order = order;
     }
 
-    public double bouquetPrimeCost(){
-        return bouquetFlowers.stream().mapToDouble(BouquetFlower::bouquetFlowerPrimeCost).sum();
+    public double getPrimeCost() {
+        return bouquetFlowers.stream().mapToDouble(BouquetFlower::bouquetFlowerPrimeCost).sum() + accessoriesPrice;
     }
+
 }

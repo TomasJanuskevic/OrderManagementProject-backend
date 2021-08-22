@@ -12,8 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+
 @Setter
+@Getter
 @NoArgsConstructor
 
 @Entity
@@ -26,6 +27,10 @@ public class Order {
     private String description;
     private boolean requiredDelivery;
     private LocalDate orderDate;
+
+    @Transient
+    private double orderPrice;
+    @Transient
     private double primeCost;
 
     @Enumerated(EnumType.STRING)
@@ -48,7 +53,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public double orderPrimeCost() {
-        return bouquets.stream().mapToDouble(Bouquet::getPrimeCost).sum();
+    public double getPrimeCost() {
+        return bouquets.stream().mapToDouble(bouquet -> bouquet.getPrimeCost() * bouquet.getQuantity()).sum();
+    }
+
+    public double getOrderPrice() {
+        return bouquets.stream().mapToDouble(bouquet -> bouquet.getBouquetPrice() * bouquet.getQuantity()).sum();
     }
 }

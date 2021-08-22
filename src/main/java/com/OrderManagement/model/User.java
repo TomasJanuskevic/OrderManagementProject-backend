@@ -8,7 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -30,7 +32,7 @@ public class User {
 
     @JsonManagedReference (value = "flowers")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Flower> flowers = new ArrayList<>();
+    private Set<Flower> flowers = new LinkedHashSet<>();
 
     public User(String userName, String password) {
         this.userName = userName;
