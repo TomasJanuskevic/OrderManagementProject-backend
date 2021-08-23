@@ -1,5 +1,6 @@
 package com.OrderManagement.controller;
 
+import com.OrderManagement.exception.BouquetNotFoundException;
 import com.OrderManagement.model.Bouquet;
 import com.OrderManagement.service.BouquetService;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ public class BouquetController {
 
     @GetMapping("/bouquet/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Bouquet> getBouquetById(@PathVariable Long id) {
+    public ResponseEntity<Bouquet> getBouquetById(@PathVariable Long id) throws BouquetNotFoundException {
         return new ResponseEntity<>(bouquetService.getBouquetById(id), HttpStatus.OK);
     }
 
@@ -34,7 +35,7 @@ public class BouquetController {
 
     @DeleteMapping("/bouquet/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Void> deleteBouquetById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBouquetById(@PathVariable Long id) throws BouquetNotFoundException {
         bouquetService.deleteBouquetById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

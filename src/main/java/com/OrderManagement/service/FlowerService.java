@@ -16,10 +16,6 @@ public class FlowerService {
 
     private final FlowerRepository flowerRepository;
 
-    public List<Flower> findFlowers() {
-        return flowerRepository.findAll();
-    }
-
     public Flower getFlowerById(Long id) throws FlowerNotFoundException {
         return flowerRepository.findById(id)
                 .orElseThrow(()-> new FlowerNotFoundException("Flower by id: " + id + " was not found"));

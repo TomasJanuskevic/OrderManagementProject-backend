@@ -16,12 +16,6 @@ public class FlowerController {
 
     private final FlowerService flowerService;
 
-    @GetMapping("/flowers")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<List<Flower>> findFlowers() {
-        return new ResponseEntity<>(flowerService.findFlowers(), HttpStatus.OK);
-    }
-
     @GetMapping("/flower/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Flower> getFlowerById(@PathVariable Long id) throws FlowerNotFoundException {

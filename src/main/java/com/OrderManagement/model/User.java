@@ -21,16 +21,18 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
+    @Column(unique = true, length = 20)
     private String userName;
     private String password;
 
-    @JsonManagedReference (value = "customers")
+    @JsonManagedReference(value = "customers")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Customer> customers = new ArrayList<>();
 
-    @JsonManagedReference (value = "flowers")
+    @JsonManagedReference(value = "flowers")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Flower> flowers = new LinkedHashSet<>();
 
@@ -38,4 +40,5 @@ public class User {
         this.userName = userName;
         this.password = password;
     }
+
 }
