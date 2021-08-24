@@ -35,6 +35,11 @@ public class BouquetFlower {
         this.flower = flower;
     }
 
+    public BouquetFlower(int quantity, Flower flower) {
+        this.quantity = quantity;
+        this.flower = flower;
+    }
+
     public double bouquetFlowerPrimeCost() {
         return flower.getPrice() * quantity;
     }

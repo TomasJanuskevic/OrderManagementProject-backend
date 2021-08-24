@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 OrderManagement.iml
+mvnw
+mvnw.cmd
+.mvn
+.gitignore
 
 ### STS ###
 .apt_generated

@@ -43,6 +43,14 @@ public class Bouquet {
         this.order = order;
     }
 
+    public Bouquet(String description, double bouquetPrice, int quantity, double accessoriesPrice, List<BouquetFlower> bouquetFlowers) {
+        this.description = description;
+        this.bouquetPrice = bouquetPrice;
+        this.quantity = quantity;
+        this.accessoriesPrice = accessoriesPrice;
+        this.bouquetFlowers = bouquetFlowers;
+    }
+
     public double getPrimeCost() {
         return bouquetFlowers.stream().mapToDouble(BouquetFlower::bouquetFlowerPrimeCost).sum() + accessoriesPrice;
     }

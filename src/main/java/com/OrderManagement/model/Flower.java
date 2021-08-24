@@ -40,4 +40,10 @@ public class Flower {
         this.color = color;
         this.user = user;
     }
+
+    public Flower(String flowerName, double price, String color) {
+        this.flowerName = flowerName;
+        this.price = price;
+        this.color = color;
+    }
 }

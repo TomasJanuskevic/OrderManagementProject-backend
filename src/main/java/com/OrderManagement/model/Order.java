@@ -53,6 +53,14 @@ public class Order {
         this.customer = customer;
     }
 
+    public Order(double deliveryPrice, String description, boolean requiredDelivery, LocalDate orderDate, List<Bouquet> bouquets) {
+        this.deliveryPrice = deliveryPrice;
+        this.description = description;
+        this.requiredDelivery = requiredDelivery;
+        this.orderDate = orderDate;
+        this.bouquets = bouquets;
+    }
+
     public double getPrimeCost() {
         return bouquets.stream().mapToDouble(bouquet -> bouquet.getPrimeCost() * bouquet.getQuantity()).sum();
     }

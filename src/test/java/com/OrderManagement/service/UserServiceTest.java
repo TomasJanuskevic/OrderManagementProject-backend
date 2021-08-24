@@ -4,7 +4,6 @@ import com.OrderManagement.exception.UserNotFoundException;
 import com.OrderManagement.model.User;
 import com.OrderManagement.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -14,9 +13,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -40,7 +40,7 @@ class UserServiceTest {
     void getUserById() throws UserNotFoundException {
         Long userId = 1L;
         User user = new User("Bob", "password");
-        when(userTestRepository.findById(userId)).thenReturn(Optional.of(user));
+        given(userTestRepository.findById(userId)).willReturn(Optional.of(user));
         assertThat(userTestService.getUserById(userId)).isEqualTo(user);
     }
 
@@ -55,8 +55,14 @@ class UserServiceTest {
     }
 
     @Test
-    @Disabled
-    void updateUser() {
+    void updateUser() throws UserNotFoundException {
+        User user = new User("Bob", "password");
+        given(userTestRepository.existsById(any())).willReturn(true);
+        userTestService.updateUser(user);
+        ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userTestRepository).save(userArgumentCaptor.capture());
+        User capturedUser = userArgumentCaptor.getValue();
+        assertThat(capturedUser).isEqualTo(user);
     }
 
     @Test
@@ -65,5 +71,21 @@ class UserServiceTest {
         given(userTestRepository.existsById(userId)).willReturn(true);
         userTestService.deleteUserById(userId);
         verify(userTestRepository).deleteById(userId);
+    }
+
+    @Test
+    void willThrowThenDeletedUserIdNotFound() {
+        Long userId = 1L;
+        given(userTestRepository.existsById(userId)).willReturn(false);
+        assertThatThrownBy(() -> userTestService.deleteUserById(userId)).isInstanceOf(UserNotFoundException.class).
+                hasMessageContaining("User by id: " + userId + " was not found");
+    }
+
+    @Test
+    void willThrowThenFindingUserIdNotFound() {
+        Long userId = 1L;
+        given(userTestRepository.findById(userId)).willReturn(Optional.empty());
+        assertThatThrownBy(() -> userTestService.getUserById(userId)).isInstanceOf(UserNotFoundException.class).
+                hasMessageContaining("User by id: " + userId + " was not found");
     }
 }
