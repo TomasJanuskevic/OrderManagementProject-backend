@@ -24,8 +24,7 @@ public class BouquetFlower {
     @JoinColumn(name = "bouquet_id", nullable = false)
     private Bouquet bouquet;
 
-    @JsonManagedReference(value = "bouquetFlowers")
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "flower_id", nullable = false)
     private Flower flower;
 

@@ -30,9 +30,9 @@ public class Flower {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonBackReference(value = "bouquetFlowers")
-    @OneToOne(mappedBy = "flower")
-    private BouquetFlower bouquetFlower;
+    @JsonIgnore
+    @OneToMany(mappedBy = "flower", cascade = CascadeType.ALL)
+    private List<BouquetFlower> bouquetFlowers = new ArrayList<>();
 
     public Flower(String flowerName, double price, String color, User user) {
         this.flowerName = flowerName;
