@@ -38,4 +38,9 @@ public class User {
         this.password = password;
     }
 
+    public User(String userName, String password, List<Customer> customers) {
+        this.userName = userName;
+        this.password = password;
+        this.customers = customers;
+    }
 }

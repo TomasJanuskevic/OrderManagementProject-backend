@@ -43,7 +43,7 @@ public class orderConfiguration {
             customerRepository.save(customer1);
 
             Order order1 = new Order(5.0, "Aprasymas", true,
-                    LocalDate.of(2021, 8, 2), OrderStatus.GAMINAMAS, customer1);
+                    LocalDate.of(2021, 8, 2), OrderStatus.IN_PRODUCTION, customer1);
             orderRepository.save(order1);
 
             Bouquet bouquet1 = new Bouquet("Zalias", 20.0, 1, 3.0, order1);

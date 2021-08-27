@@ -2,7 +2,6 @@ package com.OrderManagement.service;
 
 import com.OrderManagement.exception.OrderNotFoundException;
 import com.OrderManagement.exception.UserNotFoundException;
-import com.OrderManagement.model.Customer;
 import com.OrderManagement.model.Order;
 import com.OrderManagement.model.User;
 import com.OrderManagement.repository.OrderRepository;
@@ -11,8 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

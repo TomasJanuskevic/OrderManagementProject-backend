@@ -17,7 +17,6 @@ import javax.mail.internet.MimeMessage;
 @AllArgsConstructor
 public class EmailService {
     private final OrderService orderService;
-    private final CustomerService customerService;
     private final JavaMailSender javaMailSender;
     private static final String EMAIL = "tomjanuskevic@gmail.com";
 
@@ -28,9 +27,10 @@ public class EmailService {
         MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
         messageHelper.setFrom(EMAIL);
         messageHelper.setTo(customer.getEmail());
-        messageHelper.setSubject("Order " + order.getDescription());
-        messageHelper.setText("Hello, " + customer.getName() + " " + customer.getLastname()
-                + " your order was done");
+        messageHelper.setSubject("Order: " + order.getDescription() + " " + order.getOrderDate().toString());
+        String text = "Hello, " + customer.getName() + " " + customer.getLastname() + "\n" + "your order was produced."
+                + "\n" + "\n" + "Best regards";
+        messageHelper.setText(text);
 
         javaMailSender.send(message);
         log.info("Email was sent");

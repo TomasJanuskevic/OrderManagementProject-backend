@@ -47,4 +47,14 @@ public class Customer {
         this.address = address;
         this.user = user;
     }
+
+    public Customer(String name, String lastname, String email, String phoneNumber, String facebookAcc, String address, List<Order> orders) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.facebookAcc = facebookAcc;
+        this.address = address;
+        this.orders = orders;
+    }
 }

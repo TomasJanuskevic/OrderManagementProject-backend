@@ -75,21 +75,21 @@ public class Order implements Comparable<Order> {
 
     @Override
     public int compareTo(Order o) {
-        if (this.getOrderStatus() == OrderStatus.GAMINAMAS && o.getOrderStatus() == OrderStatus.PAGAMINTAS) {
+        if (this.getOrderStatus() == OrderStatus.IN_PRODUCTION && o.getOrderStatus() == OrderStatus.PRODUCED) {
             return -1;
-        } else if (this.getOrderStatus() == OrderStatus.GAMINAMAS && o.getOrderStatus() == OrderStatus.ATIDUOTAS) {
+        } else if (this.getOrderStatus() == OrderStatus.IN_PRODUCTION && o.getOrderStatus() == OrderStatus.TAKEN) {
             return -1;
-        } else if (this.getOrderStatus() == OrderStatus.GAMINAMAS && o.getOrderStatus() == OrderStatus.GAMINAMAS) {
+        } else if (this.getOrderStatus() == OrderStatus.IN_PRODUCTION && o.getOrderStatus() == OrderStatus.IN_PRODUCTION) {
             return 0;
-        } else if (this.getOrderStatus() == OrderStatus.PAGAMINTAS && o.getOrderStatus() == OrderStatus.GAMINAMAS) {
+        } else if (this.getOrderStatus() == OrderStatus.PRODUCED && o.getOrderStatus() == OrderStatus.IN_PRODUCTION) {
             return 1;
-        } else if (this.getOrderStatus() == OrderStatus.PAGAMINTAS && o.getOrderStatus() == OrderStatus.ATIDUOTAS) {
+        } else if (this.getOrderStatus() == OrderStatus.PRODUCED && o.getOrderStatus() == OrderStatus.TAKEN) {
             return -1;
-        } else if (this.getOrderStatus() == OrderStatus.PAGAMINTAS && o.getOrderStatus() == OrderStatus.PAGAMINTAS) {
+        } else if (this.getOrderStatus() == OrderStatus.PRODUCED && o.getOrderStatus() == OrderStatus.PRODUCED) {
             return 0;
-        } else if (this.getOrderStatus() == OrderStatus.ATIDUOTAS && o.getOrderStatus() == OrderStatus.GAMINAMAS) {
+        } else if (this.getOrderStatus() == OrderStatus.TAKEN && o.getOrderStatus() == OrderStatus.IN_PRODUCTION) {
             return 1;
-        } else if (this.getOrderStatus() == OrderStatus.ATIDUOTAS && o.getOrderStatus() == OrderStatus.PAGAMINTAS) {
+        } else if (this.getOrderStatus() == OrderStatus.TAKEN && o.getOrderStatus() == OrderStatus.PRODUCED) {
             return 1;
         } else {
             return 0;

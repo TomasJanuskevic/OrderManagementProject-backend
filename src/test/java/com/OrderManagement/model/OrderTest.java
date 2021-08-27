@@ -26,10 +26,10 @@ class OrderTest {
                 new BouquetFlower(7, flower4));
 
         List<Bouquet> bouquetList =
-                Arrays.asList(new Bouquet("Pirmas", 10, 2, 2.5, flowersForBouquet1),
-                        new Bouquet("Antras", 25, 1, 3.4, flowersForBouquet2));
-        order = new Order(5, "Gimtadienis", true,
-                LocalDate.of(2021, 8, 2), OrderStatus.GAMINAMAS ,bouquetList);
+                Arrays.asList(new Bouquet("First", 10, 2, 2.5, flowersForBouquet1),
+                        new Bouquet("Second", 25, 1, 3.4, flowersForBouquet2));
+        order = new Order(5, "Third", true,
+                LocalDate.of(2021, 8, 2), OrderStatus.IN_PRODUCTION ,bouquetList);
     }
 
     @Test
