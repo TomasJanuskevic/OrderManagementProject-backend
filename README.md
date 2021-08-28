@@ -1,4 +1,6 @@
-### **Order Management for selling bouquets**
+## **Backend - Order Management for selling bouquets**
+
+### **Main Features**
 
 User can create list of flowers and make bouquets from them.
 
@@ -6,7 +8,7 @@ Bouquets add to orders and customers.
 
 Application calculate prime cost of every order based on flowers price.
 
-User can mark order as: 'IN PRODUCTION', 'PRODUCED', 'TAKEN'.
+User can mark order as: 'IN PRODUCTION', 'PRODUCED', 'TAKEN' and send email to customer that order was made.
 
 ### **Technology**
 
